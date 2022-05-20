@@ -1,19 +1,18 @@
-Prebuilt transitions for Animated Switcher.
+Prebuilt transitions for Animated Switcher such as flip, zoom and translation.
 
 <h1 align="center">
 <img src="/preview/preview.gif?raw=true" alt="AnimatedSwitcherPlus" />
 </h1>
 
-| Transitions                        | 
-|------------------------------------|  
-| AnimatedSwitcherFlip.flipX         |  
-| AnimatedSwitcherFlip.flipY         |  
-| AnimatedSwitcherZoom.zoomIn        |  
-| AnimatedSwitcherZoom.zoomOut       |
-| AnimatedSwitcherTranslation.left   |
-| AnimatedSwitcherTranslation.right  |
-| AnimatedSwitcherTranslation.top    |
-| AnimatedSwitcherTranslation.bottom |
+## Transitions
++ AnimatedSwitcherFlip.flipX  
++ AnimatedSwitcherFlip.flipY  
++ AnimatedSwitcherZoom.zoomIn  
++ AnimatedSwitcherZoom.zoomOut
++ AnimatedSwitcherTranslation.left
++ AnimatedSwitcherTranslation.right
++ AnimatedSwitcherTranslation.top
++ AnimatedSwitcherTranslation.bottom
 
 ## Features
 + Easily animate between two widget
@@ -23,7 +22,7 @@ Prebuilt transitions for Animated Switcher.
 Add this line to your pubspec:
 ```yaml  
 dependencies:  
- animated_switcher_plus: ^1.0.0  
+ animated_switcher_plus: ^1.0.1
 ```  
 
 ## Usage
