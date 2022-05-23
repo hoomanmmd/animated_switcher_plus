@@ -1,7 +1,7 @@
 Prebuilt transitions for Animated Switcher such as flip, zoom and translation.
 
 <h1 align="center">
-<img src="/preview/preview.gif?raw=true" alt="AnimatedSwitcherPlus" />
+<img src="https://raw.githubusercontent.com/hoomanmmd/animated_switcher_plus/main/preview/preview.gif" alt="AnimatedSwitcherPlus" />
 </h1>
 
 ## Transitions
@@ -22,7 +22,7 @@ Prebuilt transitions for Animated Switcher such as flip, zoom and translation.
 Add this line to your pubspec:
 ```yaml  
 dependencies:  
- animated_switcher_plus: ^1.0.1
+ animated_switcher_plus: ^1.0.2
 ```  
 
 ## Usage
