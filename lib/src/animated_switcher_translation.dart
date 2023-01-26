@@ -16,6 +16,7 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
     Curve? switchOutCurve,
     AnimatedSwitcherLayoutBuilder? layoutBuilder,
     Widget? child,
+    bool enableFade = true,
     Key? key,
   }) : super(
           duration: duration,
@@ -23,7 +24,7 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(Offset(offset, 0)),
+          transitionBuilder: _transitionBuilder(Offset(offset, 0), enableFade),
           child: child,
           key: key,
         );
@@ -37,6 +38,7 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
     Curve? switchOutCurve,
     AnimatedSwitcherLayoutBuilder? layoutBuilder,
     Widget? child,
+    bool enableFade = true,
     Key? key,
   }) : super(
           duration: duration,
@@ -44,7 +46,7 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(Offset(-offset, 0)),
+          transitionBuilder: _transitionBuilder(Offset(-offset, 0), enableFade),
           child: child,
           key: key,
         );
@@ -58,6 +60,7 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
     Curve? switchOutCurve,
     AnimatedSwitcherLayoutBuilder? layoutBuilder,
     Widget? child,
+    bool enableFade = true,
     Key? key,
   }) : super(
           duration: duration,
@@ -65,7 +68,7 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(Offset(0, offset)),
+          transitionBuilder: _transitionBuilder(Offset(0, offset), enableFade),
           child: child,
           key: key,
         );
@@ -79,6 +82,7 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
     Curve? switchOutCurve,
     AnimatedSwitcherLayoutBuilder? layoutBuilder,
     Widget? child,
+    bool enableFade = true,
     Key? key,
   }) : super(
           duration: duration,
@@ -86,13 +90,16 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(Offset(0, -offset)),
+          transitionBuilder: _transitionBuilder(Offset(0, -offset), enableFade),
           child: child,
           key: key,
         );
 }
 
-AnimatedSwitcherTransitionBuilder _transitionBuilder(Offset offset) =>
+AnimatedSwitcherTransitionBuilder _transitionBuilder(
+  Offset offset,
+  bool enableFade,
+) =>
     (final child, final animation) {
       bool isReversed = animation.status.isReversed;
 
@@ -101,9 +108,11 @@ AnimatedSwitcherTransitionBuilder _transitionBuilder(Offset offset) =>
           begin: isReversed ? offset.scale(-1, -1) : offset,
           end: Offset.zero,
         ).animate(animation),
-        child: FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
+        child: enableFade
+            ? FadeTransition(
+                opacity: animation,
+                child: child,
+              )
+            : child,
       );
     };
