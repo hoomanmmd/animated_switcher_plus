@@ -24,7 +24,8 @@ class AnimatedSwitcherZoom extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(scaleInFactor, scaleOutFactor),
+          transitionBuilder:
+              zoomTransitionBuilder(scaleInFactor, scaleOutFactor),
           child: child,
           key: key,
         );
@@ -46,13 +47,14 @@ class AnimatedSwitcherZoom extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(scaleInFactor, scaleOutFactor),
+          transitionBuilder:
+              zoomTransitionBuilder(scaleInFactor, scaleOutFactor),
           child: child,
           key: key,
         );
 }
 
-AnimatedSwitcherTransitionBuilder _transitionBuilder(
+AnimatedSwitcherTransitionBuilder zoomTransitionBuilder(
   double scaleInFactor,
   double scaleOutFactor,
 ) =>

@@ -1,3 +1,6 @@
+## 1.1.0
++ Add AnimatedSwitcherPlus 
+
 ## 1.0.3
 + Make fade optional
 

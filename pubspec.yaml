@@ -1,10 +1,10 @@
 name: animated_switcher_plus
 description: Prebuilt transitions for AnimatedSwitcher such as flip, zoom and translation
-version: 1.0.3
+version: 1.1.0
 homepage: https://github.com/hoomanmmd/animated_switcher_plus
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:

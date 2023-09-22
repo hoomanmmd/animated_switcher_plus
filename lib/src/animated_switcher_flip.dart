@@ -22,7 +22,7 @@ class AnimatedSwitcherFlip extends AnimatedSwitcher {
           reverseDuration: reverseDuration,
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
-          transitionBuilder: _transitionBuilder(false),
+          transitionBuilder: fadeTransitionBuilder(false),
           child: child,
           key: key,
         );
@@ -42,13 +42,13 @@ class AnimatedSwitcherFlip extends AnimatedSwitcher {
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
-          transitionBuilder: _transitionBuilder(true),
+          transitionBuilder: fadeTransitionBuilder(true),
           child: child,
           key: key,
         );
 }
 
-AnimatedSwitcherTransitionBuilder _transitionBuilder(bool isYAxis) =>
+AnimatedSwitcherTransitionBuilder fadeTransitionBuilder(bool isYAxis) =>
     (final child, final animation) => _FlipTransition(
           rotate: animation,
           isYAxis: isYAxis,

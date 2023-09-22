@@ -22,30 +22,13 @@ class _ExamplePageState extends State<ExamplePage> {
             Row(
               children: [
                 Expanded(
-                  child: AnimatedSwitcherTranslation.top(
+                  child: AnimatedSwitcherPlus.translationTop(
                     duration: const Duration(milliseconds: 800),
                     child: _child(),
                   ),
                 ),
                 Expanded(
-                  child: AnimatedSwitcherTranslation.bottom(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
-                  ),
-                ),
-              ],
-            ),
-            _spacer,
-            Row(
-              children: [
-                Expanded(
-                  child: AnimatedSwitcherTranslation.left(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
-                  ),
-                ),
-                Expanded(
-                  child: AnimatedSwitcherTranslation.right(
+                  child: AnimatedSwitcherPlus.translationBottom(
                     duration: const Duration(milliseconds: 800),
                     child: _child(),
                   ),
@@ -56,13 +39,13 @@ class _ExamplePageState extends State<ExamplePage> {
             Row(
               children: [
                 Expanded(
-                  child: AnimatedSwitcherFlip.flipX(
+                  child: AnimatedSwitcherPlus.translationLeft(
                     duration: const Duration(milliseconds: 800),
                     child: _child(),
                   ),
                 ),
                 Expanded(
-                  child: AnimatedSwitcherFlip.flipY(
+                  child: AnimatedSwitcherPlus.translationRight(
                     duration: const Duration(milliseconds: 800),
                     child: _child(),
                   ),
@@ -73,14 +56,31 @@ class _ExamplePageState extends State<ExamplePage> {
             Row(
               children: [
                 Expanded(
-                  child: AnimatedSwitcherZoom.zoomIn(
+                  child: AnimatedSwitcherPlus.flipX(
                     duration: const Duration(milliseconds: 800),
                     child: _child(),
                   ),
                 ),
                 Expanded(
-                  child: AnimatedSwitcherZoom.zoomOut(
+                  child: AnimatedSwitcherPlus.flipY(
                     duration: const Duration(milliseconds: 800),
+                    child: _child(),
+                  ),
+                ),
+              ],
+            ),
+            _spacer,
+            Row(
+              children: [
+                Expanded(
+                  child: AnimatedSwitcherPlus.zoomIn(
+                    duration: const Duration(milliseconds: 400),
+                    child: _child(),
+                  ),
+                ),
+                Expanded(
+                  child: AnimatedSwitcherPlus.zoomOut(
+                    duration: const Duration(milliseconds: 400),
                     child: _child(),
                   ),
                 ),

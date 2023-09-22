@@ -24,7 +24,8 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(Offset(offset, 0), enableFade),
+          transitionBuilder:
+              translationTransitionBuilder(Offset(offset, 0), enableFade),
           child: child,
           key: key,
         );
@@ -46,7 +47,8 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(Offset(-offset, 0), enableFade),
+          transitionBuilder:
+              translationTransitionBuilder(Offset(-offset, 0), enableFade),
           child: child,
           key: key,
         );
@@ -68,7 +70,8 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(Offset(0, offset), enableFade),
+          transitionBuilder:
+              translationTransitionBuilder(Offset(0, offset), enableFade),
           child: child,
           key: key,
         );
@@ -90,13 +93,14 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _curveIn,
           switchOutCurve: switchOutCurve ?? _curveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: _transitionBuilder(Offset(0, -offset), enableFade),
+          transitionBuilder:
+              translationTransitionBuilder(Offset(0, -offset), enableFade),
           child: child,
           key: key,
         );
 }
 
-AnimatedSwitcherTransitionBuilder _transitionBuilder(
+AnimatedSwitcherTransitionBuilder translationTransitionBuilder(
   Offset offset,
   bool enableFade,
 ) =>

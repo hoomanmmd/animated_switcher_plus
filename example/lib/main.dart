@@ -1,6 +1,7 @@
 import 'package:animated_switcher_plus/animated_switcher_plus.dart';
-import 'package:example/example_page.dart';
 import 'package:flutter/material.dart';
+
+import 'example_page.dart';
 
 void main() => runApp(const App());
 
@@ -35,8 +36,8 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Spacer(),
-          AnimatedSwitcherFlip.flipY(
-            duration: const Duration(milliseconds: 500),
+          AnimatedSwitcherPlus.flipY(
+            duration: const Duration(milliseconds: 1000),
             child: Container(
               key: ValueKey(_showFirstChild),
               padding: const EdgeInsets.all(5),
