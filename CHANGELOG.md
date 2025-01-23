@@ -1,3 +1,6 @@
+## 1.1.1
++ Improve README.md
+
 ## 1.1.0
 + Add AnimatedSwitcherPlus 
 

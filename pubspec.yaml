@@ -1,6 +1,6 @@
 name: animated_switcher_plus
 description: Prebuilt transitions for AnimatedSwitcher such as flip, zoom and translation
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/hoomanmmd/animated_switcher_plus
 
 environment:

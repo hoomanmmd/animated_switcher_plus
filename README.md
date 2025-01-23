@@ -15,20 +15,20 @@ Prebuilt transitions for Animated Switcher such as flip, zoom and translation.
 + AnimatedSwitcherPlus.translationBottom
 
 ## Features
-+ Easily animate between two widget
-+ No need to provide first and second child at the same time, compare to similar packages
++ Easily animate between two widgets
++ No need to provide both the first and second child simultaneously, unlike similar packages
 
 # Installation
 Add this line to your pubspec:
 ```yaml  
 dependencies:  
- animated_switcher_plus: ^1.1.0
+ animated_switcher_plus: ^1.1.1
 ```  
 
 ## Usage
 
 ```  
-AnimatedSwitcherFlip.flipX(  
+AnimatedSwitcherPlus.flipX(  
  duration: const Duration(milliseconds: 1500),
  child: _showFirstChild ?
   const Text('Primary Text', key: ValueKey(0)) :
@@ -36,4 +36,4 @@ AnimatedSwitcherFlip.flipX(
 );  
 ```  
 
-Note: Change child's key in order to notify AnimatedSwitcher that child has been changed, otherwise transition won't happen.
+Note: If you are using the same type of widget, change the child key to notify the AnimatedSwitcher that the child has changed. Otherwise, the transition will not occur
