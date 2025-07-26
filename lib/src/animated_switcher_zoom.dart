@@ -1,9 +1,4 @@
-import 'package:flutter/widgets.dart';
-
-import 'extensions.dart';
-
-const _curveIn = Curves.easeIn;
-const _curveOut = Curves.easeOut;
+part of 'animated_switcher_plus.dart';
 
 /// Animated Switcher with zoom transition
 class AnimatedSwitcherZoom extends AnimatedSwitcher {
@@ -21,11 +16,15 @@ class AnimatedSwitcherZoom extends AnimatedSwitcher {
   }) : super(
           duration: duration,
           reverseDuration: reverseDuration,
-          switchInCurve: switchInCurve ?? _curveIn,
-          switchOutCurve: switchOutCurve ?? _curveOut,
+          switchInCurve: switchInCurve ?? _zoomCurveIn,
+          switchOutCurve: switchOutCurve ?? _zoomCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder:
-              zoomTransitionBuilder(scaleInFactor, scaleOutFactor),
+          transitionBuilder: (child, listenable) => _ZoomTransition(
+            listenable: listenable,
+            scaleInFactor: scaleInFactor,
+            scaleOutFactor: scaleOutFactor,
+            child: child,
+          ),
           child: child,
           key: key,
         );
@@ -44,31 +43,46 @@ class AnimatedSwitcherZoom extends AnimatedSwitcher {
   }) : super(
           duration: duration,
           reverseDuration: reverseDuration,
-          switchInCurve: switchInCurve ?? _curveIn,
-          switchOutCurve: switchOutCurve ?? _curveOut,
+          switchInCurve: switchInCurve ?? _zoomCurveIn,
+          switchOutCurve: switchOutCurve ?? _zoomCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder:
-              zoomTransitionBuilder(scaleInFactor, scaleOutFactor),
+          transitionBuilder: (child, listenable) => _ZoomTransition(
+            listenable: listenable,
+            scaleInFactor: scaleInFactor,
+            scaleOutFactor: scaleOutFactor,
+            child: child,
+          ),
           child: child,
           key: key,
         );
 }
 
-AnimatedSwitcherTransitionBuilder zoomTransitionBuilder(
-  double scaleInFactor,
-  double scaleOutFactor,
-) =>
-    (final child, final animation) {
-      bool isReversed = animation.status.isReversed;
+class _ZoomTransition extends AnimatedWidget {
+  const _ZoomTransition({
+    required this.scaleInFactor,
+    required this.scaleOutFactor,
+    required Animation<double> listenable,
+    this.child,
+  }) : super(listenable: listenable);
 
-      return ScaleTransition(
-        scale: Tween<double>(
-          begin: isReversed ? scaleOutFactor : scaleInFactor,
-          end: 1.0,
-        ).animate(animation),
-        child: FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
-      );
-    };
+  final Widget? child;
+  final double scaleInFactor;
+  final double scaleOutFactor;
+
+  @override
+  Widget build(BuildContext context) {
+    final animation = listenable as Animation<double>;
+    final isReversed = animation.status.isReversed;
+
+    return ScaleTransition(
+      scale: Tween<double>(
+        begin: isReversed ? scaleOutFactor : scaleInFactor,
+        end: 1.0,
+      ).animate(animation),
+      child: FadeTransition(
+        opacity: animation,
+        child: child,
+      ),
+    );
+  }
+}

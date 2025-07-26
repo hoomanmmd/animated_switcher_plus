@@ -1,9 +1,4 @@
-import 'package:flutter/widgets.dart';
-
-import 'extensions.dart';
-
-const _curveIn = Curves.easeInOut;
-const _curveOut = Curves.easeInOut;
+part of 'animated_switcher_plus.dart';
 
 /// Animated Switcher with translation transition
 class AnimatedSwitcherTranslation extends AnimatedSwitcher {
@@ -21,11 +16,15 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
   }) : super(
           duration: duration,
           reverseDuration: reverseDuration,
-          switchInCurve: switchInCurve ?? _curveIn,
-          switchOutCurve: switchOutCurve ?? _curveOut,
+          switchInCurve: switchInCurve ?? _translationCurveIn,
+          switchOutCurve: switchOutCurve ?? _translationCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder:
-              translationTransitionBuilder(Offset(offset, 0), enableFade),
+          transitionBuilder: (child, listenable) => _TranslationTransition(
+            listenable: listenable,
+            offset: Offset(offset, 0),
+            enableFade: enableFade,
+            child: child,
+          ),
           child: child,
           key: key,
         );
@@ -44,11 +43,15 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
   }) : super(
           duration: duration,
           reverseDuration: reverseDuration,
-          switchInCurve: switchInCurve ?? _curveIn,
-          switchOutCurve: switchOutCurve ?? _curveOut,
+          switchInCurve: switchInCurve ?? _translationCurveIn,
+          switchOutCurve: switchOutCurve ?? _translationCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder:
-              translationTransitionBuilder(Offset(-offset, 0), enableFade),
+          transitionBuilder: (child, listenable) => _TranslationTransition(
+            listenable: listenable,
+            offset: Offset(-offset, 0),
+            enableFade: enableFade,
+            child: child,
+          ),
           child: child,
           key: key,
         );
@@ -67,11 +70,15 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
   }) : super(
           duration: duration,
           reverseDuration: reverseDuration,
-          switchInCurve: switchInCurve ?? _curveIn,
-          switchOutCurve: switchOutCurve ?? _curveOut,
+          switchInCurve: switchInCurve ?? _translationCurveIn,
+          switchOutCurve: switchOutCurve ?? _translationCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder:
-              translationTransitionBuilder(Offset(0, offset), enableFade),
+          transitionBuilder: (child, listenable) => _TranslationTransition(
+            listenable: listenable,
+            offset: Offset(0, offset),
+            enableFade: enableFade,
+            child: child,
+          ),
           child: child,
           key: key,
         );
@@ -90,33 +97,48 @@ class AnimatedSwitcherTranslation extends AnimatedSwitcher {
   }) : super(
           duration: duration,
           reverseDuration: reverseDuration,
-          switchInCurve: switchInCurve ?? _curveIn,
-          switchOutCurve: switchOutCurve ?? _curveOut,
+          switchInCurve: switchInCurve ?? _translationCurveIn,
+          switchOutCurve: switchOutCurve ?? _translationCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder:
-              translationTransitionBuilder(Offset(0, -offset), enableFade),
+          transitionBuilder: (child, listenable) => _TranslationTransition(
+            listenable: listenable,
+            offset: Offset(0, -offset),
+            enableFade: enableFade,
+            child: child,
+          ),
           child: child,
           key: key,
         );
 }
 
-AnimatedSwitcherTransitionBuilder translationTransitionBuilder(
-  Offset offset,
-  bool enableFade,
-) =>
-    (final child, final animation) {
-      bool isReversed = animation.status.isReversed;
+class _TranslationTransition extends AnimatedWidget {
+  const _TranslationTransition({
+    required this.offset,
+    required this.enableFade,
+    required Animation<double> listenable,
+    this.child,
+  }) : super(listenable: listenable);
 
-      return SlideTransition(
-        position: Tween<Offset>(
-          begin: isReversed ? offset.scale(-1, -1) : offset,
-          end: Offset.zero,
-        ).animate(animation),
-        child: enableFade
-            ? FadeTransition(
-                opacity: animation,
-                child: child,
-              )
-            : child,
-      );
-    };
+  final Widget? child;
+  final Offset offset;
+  final bool enableFade;
+
+  @override
+  Widget build(BuildContext context) {
+    final animation = listenable as Animation<double>;
+    final isReversed = animation.status.isReversed;
+
+    return SlideTransition(
+      position: Tween<Offset>(
+        begin: isReversed ? offset.scale(-1, -1) : offset,
+        end: Offset.zero,
+      ).animate(animation),
+      child: enableFade
+          ? FadeTransition(
+              opacity: animation,
+              child: child,
+            )
+          : child,
+    );
+  }
+}

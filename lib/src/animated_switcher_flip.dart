@@ -1,14 +1,9 @@
-import 'dart:math' as math;
-
-import 'package:flutter/widgets.dart';
-
-const _curveIn = Curves.easeOutQuad;
-const _curveOut = Curves.easeInQuad;
+part of 'animated_switcher_plus.dart';
 
 /// Animated Switcher with flip transition
 class AnimatedSwitcherFlip extends AnimatedSwitcher {
   /// Animated Switcher with flip transition around x axis
-  AnimatedSwitcherFlip.flipX({
+  const AnimatedSwitcherFlip.flipX({
     required Duration duration,
     Duration? reverseDuration,
     AnimatedSwitcherLayoutBuilder? layoutBuilder,
@@ -20,15 +15,15 @@ class AnimatedSwitcherFlip extends AnimatedSwitcher {
           duration: duration,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
           reverseDuration: reverseDuration,
-          switchInCurve: switchInCurve ?? _curveIn,
-          switchOutCurve: switchOutCurve ?? _curveOut,
-          transitionBuilder: fadeTransitionBuilder(false),
+          switchInCurve: switchInCurve ?? _flipCurveIn,
+          switchOutCurve: switchOutCurve ?? _flipCurveOut,
+          transitionBuilder: _FlipTransition.flipX,
           child: child,
           key: key,
         );
 
   /// Animated Switcher with flip transition around y axis
-  AnimatedSwitcherFlip.flipY({
+  const AnimatedSwitcherFlip.flipY({
     required Duration duration,
     Duration? reverseDuration,
     AnimatedSwitcherLayoutBuilder? layoutBuilder,
@@ -40,43 +35,43 @@ class AnimatedSwitcherFlip extends AnimatedSwitcher {
           duration: duration,
           reverseDuration: reverseDuration,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          switchInCurve: switchInCurve ?? _curveIn,
-          switchOutCurve: switchOutCurve ?? _curveOut,
-          transitionBuilder: fadeTransitionBuilder(true),
+          switchInCurve: switchInCurve ?? _flipCurveIn,
+          switchOutCurve: switchOutCurve ?? _flipCurveOut,
+          transitionBuilder: _FlipTransition.flipY,
           child: child,
           key: key,
         );
 }
 
-AnimatedSwitcherTransitionBuilder fadeTransitionBuilder(bool isYAxis) =>
-    (final child, final animation) => _FlipTransition(
-          rotate: animation,
-          isYAxis: isYAxis,
-          child: child,
-        );
-
 class _FlipTransition extends AnimatedWidget {
-  const _FlipTransition({
-    required Animation<double> rotate,
-    required this.isYAxis,
+  const _FlipTransition.flipX(
     this.child,
-    Key? key,
-  }) : super(key: key, listenable: rotate);
+    Animation<double> listenable,
+  )   : axis = Axis.horizontal,
+        super(listenable: listenable);
 
-  final bool isYAxis;
+  const _FlipTransition.flipY(
+    this.child,
+    Animation<double> listenable,
+  )   : axis = Axis.vertical,
+        super(listenable: listenable);
+
+  final Axis axis;
   final Widget? child;
 
   @override
   Widget build(BuildContext context) {
-    if (rotate.value < 0.5) {
+    final animation = listenable as Animation<double>;
+
+    if (animation.value < 0.5) {
       return SizedBox.shrink(child: child);
     }
     final transform = Matrix4.identity()..setEntry(3, 2, 0.001);
 
-    if (isYAxis) {
-      transform.rotateY((1 - rotate.value) * math.pi);
+    if (axis == Axis.vertical) {
+      transform.rotateY((1 - animation.value) * math.pi);
     } else {
-      transform.rotateX((1 - rotate.value) * math.pi);
+      transform.rotateX((1 - animation.value) * math.pi);
     }
 
     return Transform(
@@ -85,6 +80,4 @@ class _FlipTransition extends AnimatedWidget {
       child: child,
     );
   }
-
-  Animation<double> get rotate => listenable as Animation<double>;
 }
