@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
 
 import 'extensions.dart';
+import 'transitions/wipe_transition.dart';
 
 part 'animated_switcher_flip.dart';
 part 'animated_switcher_translation.dart';
@@ -14,6 +15,8 @@ const _translationCurveIn = Curves.easeOutQuad;
 const _translationCurveOut = Curves.easeInQuad;
 const _zoomCurveIn = Curves.easeIn;
 const _zoomCurveOut = Curves.easeOut;
+const _wipeCurveIn = Curves.easeInSine;
+const _wipeCurveOut = Curves.easeOutSine;
 
 /// Animated Switcher plus
 class AnimatedSwitcherPlus extends AnimatedSwitcher {
@@ -215,6 +218,48 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
             scaleOutFactor: scaleOutFactor,
             child: child,
           ),
+          child: child,
+          key: key,
+        );
+
+  /// Animated Switcher with wipe x transition
+  /// Suitable for same-size widgets
+  const AnimatedSwitcherPlus.wipeX({
+    required Duration duration,
+    Duration? reverseDuration,
+    AnimatedSwitcherLayoutBuilder? layoutBuilder,
+    Curve? switchInCurve,
+    Curve? switchOutCurve,
+    Widget? child,
+    Key? key,
+  }) : super(
+          duration: duration,
+          reverseDuration: reverseDuration,
+          layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
+          switchInCurve: switchInCurve ?? _wipeCurveIn,
+          switchOutCurve: switchOutCurve ?? _wipeCurveOut,
+          transitionBuilder: WipeTransition.x,
+          child: child,
+          key: key,
+        );
+
+  /// Animated Switcher with wipe y transition
+  /// Suitable for same-size widgets
+  const AnimatedSwitcherPlus.wipeY({
+    required Duration duration,
+    Duration? reverseDuration,
+    AnimatedSwitcherLayoutBuilder? layoutBuilder,
+    Curve? switchInCurve,
+    Curve? switchOutCurve,
+    Widget? child,
+    Key? key,
+  }) : super(
+          duration: duration,
+          reverseDuration: reverseDuration,
+          layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
+          switchInCurve: switchInCurve ?? _wipeCurveIn,
+          switchOutCurve: switchOutCurve ?? _wipeCurveOut,
+          transitionBuilder: WipeTransition.y,
           child: child,
           key: key,
         );

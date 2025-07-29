@@ -1,3 +1,6 @@
+## 1.2.0
++ Add AnimatedSwitcherPlus.wipeX and AnimatedSwitcherPlus.wipeY
+
 ## 1.1.1
 + Improve README.md
 

@@ -87,6 +87,23 @@ class _ExamplePageState extends State<ExamplePage> {
               ],
             ),
             _spacer,
+            Row(
+              children: [
+                Expanded(
+                  child: AnimatedSwitcherPlus.wipeX(
+                    duration: const Duration(milliseconds: 400),
+                    child: _fixedSizeChild(),
+                  ),
+                ),
+                Expanded(
+                  child: AnimatedSwitcherPlus.wipeY(
+                    duration: const Duration(milliseconds: 400),
+                    child: _fixedSizeChild(),
+                  ),
+                ),
+              ],
+            ),
+            _spacer,
             const Spacer(),
             Center(
               child: ElevatedButton(
@@ -111,6 +128,19 @@ class _ExamplePageState extends State<ExamplePage> {
         ),
         child: Text(
           _showFirstChild ? 'Primary' : 'Secondary',
+        ),
+      );
+
+  Widget _fixedSizeChild() => Container(
+        key: ValueKey(_showFirstChild),
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: _showFirstChild ? Colors.blue.shade50 : Colors.red.shade50,
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+        ),
+        child: Icon(
+          _showFirstChild ? Icons.add_call : Icons.call,
+          size: 42,
         ),
       );
 }

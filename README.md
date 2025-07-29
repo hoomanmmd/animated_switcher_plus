@@ -13,6 +13,8 @@ Prebuilt transitions for Animated Switcher such as flip, zoom and translation.
 + AnimatedSwitcherPlus.translationRight
 + AnimatedSwitcherPlus.translationTop
 + AnimatedSwitcherPlus.translationBottom
++ AnimatedSwitcherPlus.wipeX ( Suitable for same-size widgets )
++ AnimatedSwitcherPlus.wipeY ( Suitable for same-size widgets )
 
 ## Features
 + Easily animate between two widgets
@@ -22,7 +24,7 @@ Prebuilt transitions for Animated Switcher such as flip, zoom and translation.
 Add this line to your pubspec:
 ```yaml  
 dependencies:  
- animated_switcher_plus: ^1.1.1
+ animated_switcher_plus: ^1.2.0
 ```  
 
 ## Usage
