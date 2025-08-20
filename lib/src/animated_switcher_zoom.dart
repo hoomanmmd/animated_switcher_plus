@@ -3,6 +3,7 @@ part of 'animated_switcher_plus.dart';
 /// Animated Switcher with zoom transition
 class AnimatedSwitcherZoom extends AnimatedSwitcher {
   /// Animated Switcher with zoom in transition
+  @Deprecated('Use AnimatedSwitcherPlus.zoomIn instead.')
   AnimatedSwitcherZoom.zoomIn({
     required Duration duration,
     Duration? reverseDuration,
@@ -19,7 +20,7 @@ class AnimatedSwitcherZoom extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _zoomCurveIn,
           switchOutCurve: switchOutCurve ?? _zoomCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: (child, listenable) => _ZoomTransition(
+          transitionBuilder: (child, listenable) => ZoomTransition(
             listenable: listenable,
             scaleInFactor: scaleInFactor,
             scaleOutFactor: scaleOutFactor,
@@ -30,6 +31,7 @@ class AnimatedSwitcherZoom extends AnimatedSwitcher {
         );
 
   /// Animated Switcher with zoom out transition
+  @Deprecated('Use AnimatedSwitcherPlus.zoomOut instead.')
   AnimatedSwitcherZoom.zoomOut({
     required Duration duration,
     Duration? reverseDuration,
@@ -46,7 +48,7 @@ class AnimatedSwitcherZoom extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _zoomCurveIn,
           switchOutCurve: switchOutCurve ?? _zoomCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: (child, listenable) => _ZoomTransition(
+          transitionBuilder: (child, listenable) => ZoomTransition(
             listenable: listenable,
             scaleInFactor: scaleInFactor,
             scaleOutFactor: scaleOutFactor,
@@ -55,34 +57,4 @@ class AnimatedSwitcherZoom extends AnimatedSwitcher {
           child: child,
           key: key,
         );
-}
-
-class _ZoomTransition extends AnimatedWidget {
-  const _ZoomTransition({
-    required this.scaleInFactor,
-    required this.scaleOutFactor,
-    required Animation<double> listenable,
-    this.child,
-  }) : super(listenable: listenable);
-
-  final Widget? child;
-  final double scaleInFactor;
-  final double scaleOutFactor;
-
-  @override
-  Widget build(BuildContext context) {
-    final animation = listenable as Animation<double>;
-    final isReversed = animation.status.isReversed;
-
-    return ScaleTransition(
-      scale: Tween<double>(
-        begin: isReversed ? scaleOutFactor : scaleInFactor,
-        end: 1.0,
-      ).animate(animation),
-      child: FadeTransition(
-        opacity: animation,
-        child: child,
-      ),
-    );
-  }
 }

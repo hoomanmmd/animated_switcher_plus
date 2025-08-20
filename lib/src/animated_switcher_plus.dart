@@ -1,9 +1,9 @@
-import 'dart:math' as math;
-
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
+import 'transitions/flip_transition.dart';
+import 'transitions/translation_transition.dart';
 import 'transitions/wipe_transition.dart';
+import 'transitions/zoom_transition.dart';
 
 part 'animated_switcher_flip.dart';
 part 'animated_switcher_translation.dart';
@@ -35,7 +35,7 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           reverseDuration: reverseDuration,
           switchInCurve: switchInCurve ?? _flipCurveIn,
           switchOutCurve: switchOutCurve ?? _flipCurveOut,
-          transitionBuilder: _FlipTransition.flipX,
+          transitionBuilder: FlipTransition.flipX,
           child: child,
           key: key,
         );
@@ -55,7 +55,7 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
           switchInCurve: switchInCurve ?? _flipCurveIn,
           switchOutCurve: switchOutCurve ?? _flipCurveOut,
-          transitionBuilder: _FlipTransition.flipY,
+          transitionBuilder: FlipTransition.flipY,
           child: child,
           key: key,
         );
@@ -77,7 +77,7 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _translationCurveIn,
           switchOutCurve: switchOutCurve ?? _translationCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: (child, listenable) => _TranslationTransition(
+          transitionBuilder: (child, listenable) => TranslationTransition(
             listenable: listenable,
             offset: Offset(offset, 0),
             enableFade: enableFade,
@@ -104,7 +104,7 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _translationCurveIn,
           switchOutCurve: switchOutCurve ?? _translationCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: (child, listenable) => _TranslationTransition(
+          transitionBuilder: (child, listenable) => TranslationTransition(
             listenable: listenable,
             offset: Offset(-offset, 0),
             enableFade: enableFade,
@@ -131,7 +131,7 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _translationCurveIn,
           switchOutCurve: switchOutCurve ?? _translationCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: (child, listenable) => _TranslationTransition(
+          transitionBuilder: (child, listenable) => TranslationTransition(
             listenable: listenable,
             offset: Offset(0, offset),
             enableFade: enableFade,
@@ -158,7 +158,7 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _translationCurveIn,
           switchOutCurve: switchOutCurve ?? _translationCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: (child, listenable) => _TranslationTransition(
+          transitionBuilder: (child, listenable) => TranslationTransition(
             listenable: listenable,
             offset: Offset(0, -offset),
             enableFade: enableFade,
@@ -185,7 +185,7 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _zoomCurveIn,
           switchOutCurve: switchOutCurve ?? _zoomCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: (child, listenable) => _ZoomTransition(
+          transitionBuilder: (child, listenable) => ZoomTransition(
             listenable: listenable,
             scaleInFactor: scaleInFactor,
             scaleOutFactor: scaleOutFactor,
@@ -212,7 +212,7 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _zoomCurveIn,
           switchOutCurve: switchOutCurve ?? _zoomCurveOut,
           layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
-          transitionBuilder: (child, listenable) => _ZoomTransition(
+          transitionBuilder: (child, listenable) => ZoomTransition(
             listenable: listenable,
             scaleInFactor: scaleInFactor,
             scaleOutFactor: scaleOutFactor,
