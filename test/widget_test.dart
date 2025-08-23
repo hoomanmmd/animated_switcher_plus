@@ -277,4 +277,58 @@ void main() {
     expect(find.byKey(const ValueKey('1')), findsNothing);
     expect(find.byKey(const ValueKey('2')), findsOneWidget);
   });
+
+  testWidgets('Reveal X', (WidgetTester tester) async {
+    final widgetBuilder = (Widget child) => AnimatedSwitcherPlus.revealX(
+          duration: const Duration(microseconds: 10),
+          child: child,
+        );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: AnimatedSwitcherPlusWrapper(widgetBuilder: widgetBuilder),
+      ),
+    );
+
+    expect(find.byKey(const ValueKey('1')), findsOneWidget);
+    expect(find.byKey(const ValueKey('2')), findsNothing);
+
+    await tester.tap(find.text('Animate'));
+    await tester.pump();
+
+    expect(find.byKey(const ValueKey('1')), findsOneWidget);
+    expect(find.byKey(const ValueKey('2')), findsOneWidget);
+
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const ValueKey('1')), findsNothing);
+    expect(find.byKey(const ValueKey('2')), findsOneWidget);
+  });
+
+  testWidgets('Reveal Y', (WidgetTester tester) async {
+    final widgetBuilder = (Widget child) => AnimatedSwitcherPlus.revealY(
+          duration: const Duration(microseconds: 10),
+          child: child,
+        );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: AnimatedSwitcherPlusWrapper(widgetBuilder: widgetBuilder),
+      ),
+    );
+
+    expect(find.byKey(const ValueKey('1')), findsOneWidget);
+    expect(find.byKey(const ValueKey('2')), findsNothing);
+
+    await tester.tap(find.text('Animate'));
+    await tester.pump();
+
+    expect(find.byKey(const ValueKey('1')), findsOneWidget);
+    expect(find.byKey(const ValueKey('2')), findsOneWidget);
+
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const ValueKey('1')), findsNothing);
+    expect(find.byKey(const ValueKey('2')), findsOneWidget);
+  });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'transitions/flip_transition.dart';
+import 'transitions/reveal_transition.dart';
 import 'transitions/translation_transition.dart';
 import 'transitions/wipe_transition.dart';
 import 'transitions/zoom_transition.dart';
@@ -17,6 +18,8 @@ const _zoomCurveIn = Curves.easeIn;
 const _zoomCurveOut = Curves.easeOut;
 const _wipeCurveIn = Curves.easeInSine;
 const _wipeCurveOut = Curves.easeOutSine;
+const _revealCurveIn = Curves.easeOutQuad;
+const _revealCurveOut = Curves.easeIn;
 
 /// Animated Switcher plus
 class AnimatedSwitcherPlus extends AnimatedSwitcher {
@@ -260,6 +263,46 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           switchInCurve: switchInCurve ?? _wipeCurveIn,
           switchOutCurve: switchOutCurve ?? _wipeCurveOut,
           transitionBuilder: WipeTransition.y,
+          child: child,
+          key: key,
+        );
+
+  /// Animated Switcher with reveal x transition
+  const AnimatedSwitcherPlus.revealX({
+    required Duration duration,
+    Duration? reverseDuration,
+    AnimatedSwitcherLayoutBuilder? layoutBuilder,
+    Curve? switchInCurve,
+    Curve? switchOutCurve,
+    Widget? child,
+    Key? key,
+  }) : super(
+          duration: duration,
+          reverseDuration: reverseDuration,
+          layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
+          switchInCurve: switchInCurve ?? _revealCurveIn,
+          switchOutCurve: switchOutCurve ?? _revealCurveOut,
+          transitionBuilder: RevealTransition.horizontal,
+          child: child,
+          key: key,
+        );
+
+  /// Animated Switcher with reveal y transition
+  const AnimatedSwitcherPlus.revealY({
+    required Duration duration,
+    Duration? reverseDuration,
+    AnimatedSwitcherLayoutBuilder? layoutBuilder,
+    Curve? switchInCurve,
+    Curve? switchOutCurve,
+    Widget? child,
+    Key? key,
+  }) : super(
+          duration: duration,
+          reverseDuration: reverseDuration,
+          layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
+          switchInCurve: switchInCurve ?? _revealCurveIn,
+          switchOutCurve: switchOutCurve ?? _revealCurveOut,
+          transitionBuilder: RevealTransition.vertical,
           child: child,
           key: key,
         );

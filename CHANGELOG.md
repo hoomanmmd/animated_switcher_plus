@@ -1,3 +1,6 @@
+## 1.3.0
++ Add AnimatedSwitcherPlus.revealX and AnimatedSwitcherPlus.revealY
+
 ## 1.2.0
 + Add AnimatedSwitcherPlus.wipeX and AnimatedSwitcherPlus.wipeY
 

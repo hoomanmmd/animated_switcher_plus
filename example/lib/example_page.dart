@@ -104,6 +104,23 @@ class _ExamplePageState extends State<ExamplePage> {
               ],
             ),
             _spacer,
+            Row(
+              children: [
+                Expanded(
+                  child: AnimatedSwitcherPlus.revealX(
+                    duration: const Duration(milliseconds: 800),
+                    child: _child(),
+                  ),
+                ),
+                Expanded(
+                  child: AnimatedSwitcherPlus.revealY(
+                    duration: const Duration(milliseconds: 800),
+                    child: _child(),
+                  ),
+                ),
+              ],
+            ),
+            _spacer,
             const Spacer(),
             Center(
               child: ElevatedButton(
