@@ -1,3 +1,6 @@
+## 1.4.0
++ Add AnimatedSwitcherPlus.revealCircular and AnimatedSwitcherPlus.wiggleRadial
+
 ## 1.3.0
 + Add AnimatedSwitcherPlus.revealX and AnimatedSwitcherPlus.revealY
 

@@ -4,6 +4,10 @@ Prebuilt transitions for Animated Switcher such as flip, zoom and translation.
 <img src="https://raw.githubusercontent.com/hoomanmmd/animated_switcher_plus/main/preview/preview.gif" alt="AnimatedSwitcherPlus" />
 </h1>
 
+## Features
++ Easily animate between two widgets
++ No need to provide both the first and second child simultaneously, unlike similar packages
+
 ## Transitions
 + AnimatedSwitcherPlus.flipX  
 + AnimatedSwitcherPlus.flipY  
@@ -17,20 +21,10 @@ Prebuilt transitions for Animated Switcher such as flip, zoom and translation.
 + AnimatedSwitcherPlus.wipeY ( Suitable for same-size widgets )
 + AnimatedSwitcherPlus.revealX
 + AnimatedSwitcherPlus.revealY
-
-## Features
-+ Easily animate between two widgets
-+ No need to provide both the first and second child simultaneously, unlike similar packages
-
-# Installation
-Add this line to your pubspec:
-```yaml  
-dependencies:  
- animated_switcher_plus: ^1.3.0
-```  
++ AnimatedSwitcherPlus.revealCircular
++ AnimatedSwitcherPlus.wiggleRadial
 
 ## Usage
-
 ```  
 AnimatedSwitcherPlus.flipX(  
  duration: const Duration(milliseconds: 1500),

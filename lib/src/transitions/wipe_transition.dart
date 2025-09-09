@@ -26,12 +26,8 @@ class WipeTransition extends AnimatedWidget {
         ? (isReversed ? _Clipper.reverseX : _Clipper.x)
         : (isReversed ? _Clipper.reverseY : _Clipper.y);
 
-    return AnimatedBuilder(
-      animation: animation,
-      builder: (context, child) => ClipRect(
-        clipper: clipper(animation.value),
-        child: child,
-      ),
+    return ClipRect(
+      clipper: clipper(animation.value),
       child: child,
     );
   }

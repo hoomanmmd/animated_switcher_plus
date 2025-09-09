@@ -25,6 +25,7 @@ class FlipTransition extends AnimatedWidget {
     if (animation.value < 0.5) {
       return SizedBox.shrink(child: child);
     }
+
     final transform = Matrix4.identity()..setEntry(3, 2, 0.001);
 
     if (axis == Axis.vertical) {
