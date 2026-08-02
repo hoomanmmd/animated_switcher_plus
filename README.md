@@ -9,6 +9,7 @@ Prebuilt transitions for Animated Switcher such as flip, zoom and translation.
 + No need to provide both the first and second child simultaneously, unlike similar packages
 
 ## Transitions
++ AnimatedSwitcherPlus.blur  
 + AnimatedSwitcherPlus.flipX  
 + AnimatedSwitcherPlus.flipY  
 + AnimatedSwitcherPlus.zoomIn  

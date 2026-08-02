@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'transitions/flip_transition.dart';
 import 'transitions/reveal_transition.dart';
 import 'transitions/translation_transition.dart';
+import 'transitions/blur_transition.dart';
 import 'transitions/wiggle_transition.dart';
 import 'transitions/wipe_transition.dart';
 import 'transitions/zoom_transition.dart';
@@ -22,6 +23,8 @@ const _wipeCurveOut = Curves.easeOutSine;
 const _revealCurveIn = Curves.easeOutQuad;
 const _revealCurveOut = Curves.easeIn;
 const _wiggleCurve = Curves.elasticInOut;
+const _blurCurveIn = Curves.easeOutSine;
+const _blurCurveOut = Curves.easeInSine;
 
 /// Animated Switcher plus
 class AnimatedSwitcherPlus extends AnimatedSwitcher {
@@ -345,4 +348,22 @@ class AnimatedSwitcherPlus extends AnimatedSwitcher {
           child: child,
           key: key,
         );
+
+  /// Animated Switcher with blur transition
+  const AnimatedSwitcherPlus.blur({
+    required Duration duration,
+    AnimatedSwitcherLayoutBuilder? layoutBuilder,
+    Curve? switchInCurve,
+    Curve? switchOutCurve,
+    Widget? child,
+    Key? key,
+  }) : super(
+    duration: duration,
+    layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
+    switchInCurve: switchInCurve ?? _blurCurveIn,
+    switchOutCurve: switchOutCurve ?? _blurCurveOut,
+    transitionBuilder: BlurTransition.new,
+    child: child,
+    key: key,
+  );
 }

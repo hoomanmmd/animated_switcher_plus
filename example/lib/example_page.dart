@@ -18,7 +18,6 @@ class _ExamplePageState extends State<ExamplePage> {
       body: SafeArea(
         child: Column(
           children: [
-            const Spacer(),
             Row(
               children: [
                 Expanded(
@@ -138,14 +137,22 @@ class _ExamplePageState extends State<ExamplePage> {
               ],
             ),
             _spacer,
-            const Spacer(),
-            Center(
-              child: ElevatedButton(
-                onPressed: () => setState(() {
-                  _showFirstChild = !_showFirstChild;
-                }),
-                child: const Text('Animate'),
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: AnimatedSwitcherPlus.blur(
+                    duration: const Duration(milliseconds: 600),
+                    child: _child(),
+                  ),
+                ),
+              ],
+            ),
+            _spacer,
+            ElevatedButton(
+              onPressed: () => setState(() {
+                _showFirstChild = !_showFirstChild;
+              }),
+              child: const Text('Animate'),
             ),
           ],
         ),
