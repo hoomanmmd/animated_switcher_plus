@@ -18,18 +18,40 @@ class _ExamplePageState extends State<ExamplePage> {
       body: SafeArea(
         child: Column(
           children: [
+            _spacer,
             Row(
               children: [
                 Expanded(
-                  child: AnimatedSwitcherPlus.translationTop(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
+                  child: _item(
+                    "Blur",
+                    AnimatedSwitcherPlus.blur(
+                      duration: const Duration(milliseconds: 600),
+                      child: _child(),
+                    ),
+                  ),
+                ),
+                const Expanded(child: SizedBox.shrink()),
+              ],
+            ),
+            _spacer,
+            Row(
+              children: [
+                Expanded(
+                  child: _item(
+                    "Translation Top",
+                    AnimatedSwitcherPlus.translationTop(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: AnimatedSwitcherPlus.translationBottom(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
+                  child: _item(
+                    "Translation Bottom",
+                    AnimatedSwitcherPlus.translationBottom(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
                   ),
                 ),
               ],
@@ -38,32 +60,21 @@ class _ExamplePageState extends State<ExamplePage> {
             Row(
               children: [
                 Expanded(
-                  child: AnimatedSwitcherPlus.translationLeft(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
+                  child: _item(
+                    "Translation Left",
+                    AnimatedSwitcherPlus.translationLeft(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: AnimatedSwitcherPlus.translationRight(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
-                  ),
-                ),
-              ],
-            ),
-            _spacer,
-            Row(
-              children: [
-                Expanded(
-                  child: AnimatedSwitcherPlus.flipX(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
-                  ),
-                ),
-                Expanded(
-                  child: AnimatedSwitcherPlus.flipY(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
+                  child: _item(
+                    "Translation Right",
+                    AnimatedSwitcherPlus.translationRight(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
                   ),
                 ),
               ],
@@ -72,32 +83,21 @@ class _ExamplePageState extends State<ExamplePage> {
             Row(
               children: [
                 Expanded(
-                  child: AnimatedSwitcherPlus.zoomIn(
-                    duration: const Duration(milliseconds: 400),
-                    child: _child(),
+                  child: _item(
+                    "Flip X",
+                    AnimatedSwitcherPlus.flipX(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: AnimatedSwitcherPlus.zoomOut(
-                    duration: const Duration(milliseconds: 400),
-                    child: _child(),
-                  ),
-                ),
-              ],
-            ),
-            _spacer,
-            Row(
-              children: [
-                Expanded(
-                  child: AnimatedSwitcherPlus.wipeX(
-                    duration: const Duration(milliseconds: 400),
-                    child: _fixedSizeChild(),
-                  ),
-                ),
-                Expanded(
-                  child: AnimatedSwitcherPlus.wipeY(
-                    duration: const Duration(milliseconds: 400),
-                    child: _fixedSizeChild(),
+                  child: _item(
+                    "Flip Y",
+                    AnimatedSwitcherPlus.flipY(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
                   ),
                 ),
               ],
@@ -106,32 +106,21 @@ class _ExamplePageState extends State<ExamplePage> {
             Row(
               children: [
                 Expanded(
-                  child: AnimatedSwitcherPlus.revealX(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
+                  child: _item(
+                    "Zoom In",
+                    AnimatedSwitcherPlus.zoomIn(
+                      duration: const Duration(milliseconds: 400),
+                      child: _child(),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: AnimatedSwitcherPlus.revealY(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
-                  ),
-                ),
-              ],
-            ),
-            _spacer,
-            Row(
-              children: [
-                Expanded(
-                  child: AnimatedSwitcherPlus.revealCircular(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
-                  ),
-                ),
-                Expanded(
-                  child: AnimatedSwitcherPlus.wiggleRadial(
-                    duration: const Duration(milliseconds: 800),
-                    child: _child(),
+                  child: _item(
+                    "Zoom Out",
+                    AnimatedSwitcherPlus.zoomOut(
+                      duration: const Duration(milliseconds: 400),
+                      child: _child(),
+                    ),
                   ),
                 ),
               ],
@@ -140,9 +129,67 @@ class _ExamplePageState extends State<ExamplePage> {
             Row(
               children: [
                 Expanded(
-                  child: AnimatedSwitcherPlus.blur(
-                    duration: const Duration(milliseconds: 600),
-                    child: _child(),
+                  child: _item(
+                    "Wipe X",
+                    AnimatedSwitcherPlus.wipeX(
+                      duration: const Duration(milliseconds: 400),
+                      child: _fixedSizeChild(),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: _item(
+                    "Wipe Y",
+                    AnimatedSwitcherPlus.wipeY(
+                      duration: const Duration(milliseconds: 400),
+                      child: _fixedSizeChild(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            _spacer,
+            Row(
+              children: [
+                Expanded(
+                  child: _item(
+                    "Reveal X",
+                    AnimatedSwitcherPlus.revealX(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: _item(
+                    "Reveal Y",
+                    AnimatedSwitcherPlus.revealY(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            _spacer,
+            Row(
+              children: [
+                Expanded(
+                  child: _item(
+                    "Reveal Circular",
+                    AnimatedSwitcherPlus.revealCircular(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: _item(
+                    "Wiggle Radial",
+                    AnimatedSwitcherPlus.wiggleRadial(
+                      duration: const Duration(milliseconds: 800),
+                      child: _child(),
+                    ),
                   ),
                 ),
               ],
@@ -156,6 +203,18 @@ class _ExamplePageState extends State<ExamplePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _item(String name, Widget child) {
+    return Padding(
+      padding: const EdgeInsetsGeometry.symmetric(horizontal: 32),
+      child: Row(
+        children: [
+          Expanded(child: Text(name)),
+          Expanded(child: child),
+        ],
       ),
     );
   }

@@ -23,10 +23,10 @@ class FlipTransition extends AnimatedWidget {
     final animation = listenable as Animation<double>;
 
     if (animation.value < 0.5) {
-      return SizedBox.shrink(child: child);
+      return Opacity(opacity: 0, child: child);
     }
 
-    final transform = Matrix4.identity()..setEntry(3, 2, 0.001);
+    final transform = Matrix4.identity()..setEntry(3, 2, 0.0015);
 
     if (axis == Axis.vertical) {
       transform.rotateY((1 - animation.value) * math.pi);

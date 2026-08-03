@@ -12,8 +12,8 @@ part 'animated_switcher_flip.dart';
 part 'animated_switcher_translation.dart';
 part 'animated_switcher_zoom.dart';
 
-const _flipCurveIn = Curves.easeOutQuad;
-const _flipCurveOut = Curves.easeInQuad;
+const _flipCurveIn = Curves.easeInOutQuad;
+const _flipCurveOut = Curves.easeInOutQuart;
 const _translationCurveIn = Curves.easeOutQuad;
 const _translationCurveOut = Curves.easeInQuad;
 const _zoomCurveIn = Curves.easeIn;
