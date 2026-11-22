@@ -1,3 +1,6 @@
+## 1.5.2
++ Compatible with flutter 3.50.0
+
 ## 1.5.1
 + Minor improvements
  

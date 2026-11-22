@@ -1,11 +1,11 @@
 import 'package:animated_switcher_plus/animated_switcher_plus.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ExamplePage extends StatefulWidget {
   const ExamplePage({Key? key}) : super(key: key);
 
   @override
-  _ExamplePageState createState() => _ExamplePageState();
+  State<ExamplePage> createState() => _ExamplePageState();
 }
 
 class _ExamplePageState extends State<ExamplePage> {

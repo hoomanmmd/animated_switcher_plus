@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 
 class FlipTransition extends AnimatedWidget {
   const FlipTransition.flipX(

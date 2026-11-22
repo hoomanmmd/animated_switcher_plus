@@ -1,5 +1,5 @@
 import 'package:animated_switcher_plus/animated_switcher_plus.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'example_page.dart';
 

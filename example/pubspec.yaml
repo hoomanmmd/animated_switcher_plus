@@ -12,6 +12,7 @@ dependencies:
 
   animated_switcher_plus:
     path: ../
+  material_ui: ^1.11.1
 
 dev_dependencies:
   flutter_test:
